@@ -1,0 +1,98 @@
+<!-- Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT License. -->
+<!-- This file shows how to design a first-run page that provides a welcome screen to the user about the features of the add-in. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Excel AI Helper</title>
+
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+
+    <!-- For more information on Fluent UI, visit https://developer.microsoft.com/fluentui#/. -->
+    <link rel="stylesheet" href="https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/office-ui-fabric-core/11.1.0/css/fabric.min.css"/>
+
+    <!-- Template styles -->
+    <link href="taskpane.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="ms-font-m ms-welcome ms-Fabric">
+    <header class="ms-welcome__header ms-bgColor-neutralLighter">
+        <img width="90" height="90" src="../../assets/logo-filled.png" alt="Excel AI Helper" title="Excel AI Helper" />
+        <h1 class="ms-font-su">Excel AI Helper</h1>
+    </header>
+    <section id="sideload-msg" class="ms-welcome__main">
+        <h2 class="ms-font-xl">Please <a target="_blank" href="https://learn.microsoft.com/office/dev/add-ins/testing/test-debug-office-add-ins#sideload-an-office-add-in-for-testing">sideload</a> your add-in to see app body.</h2>
+    </section>
+    <main id="app-body" class="ms-welcome__main" style="display: none;">
+        <h2 class="ms-font-xl">AI-powered Excel assistance</h2>
+        <p class="ms-font-m">To use the AI helper:</p>
+        <ol class="ms-List">
+            <li class="ms-ListItem">
+                <span class="ms-font-m">1. Select data in your Excel sheet</span>
+            </li>
+            <li class="ms-ListItem">
+                <span class="ms-font-m">2. Choose output mode below</span>
+            </li>
+            <li class="ms-ListItem">
+                <span class="ms-font-m">3. Click the Run button</span>
+            </li>
+        </ol>
+        
+        <div class="ms-Toggle">
+            <span class="ms-Toggle-description">Output mode:</span>
+            <div class="toggle-container">
+                <input type="checkbox" id="chat-toggle" class="ms-Toggle-input" />
+                <label for="chat-toggle" class="ms-Toggle-field">
+                    <span class="ms-Label ms-Label--off">Cell</span>
+                    <span class="ms-Label ms-Label--on">Chat</span>
+                </label>
+            </div>
+        </div>
+        
+        <div role="button" id="run" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
+            <span class="ms-Button-label">Run AI Analysis</span>
+        </div>
+        
+        <div id="chat-container" style="display: none;">
+            <div id="chat-messages"></div>
+            <div id="chat-input-container">
+                <input type="text" id="chat-input" placeholder="Ask a follow-up question..." />
+                <button id="chat-send">Send</button>
+            </div>
+        </div>
+        
+        <!-- Hovering Chat Button -->
+        <div id="hovering-chat-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+        </div>
+        
+        <!-- Hovering Chat Container -->
+        <div id="hovering-chat-container">
+            <div class="hovering-chat-header">
+                <span>Excel AI Helper</span>
+                <button id="close-hovering-chat">×</button>
+            </div>
+            <div id="hovering-chat-messages"></div>
+            <div id="hovering-chat-input-container">
+                <input type="text" id="hovering-chat-input" placeholder="Ask a question..." />
+                <button id="hovering-chat-send">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <p><label id="result-info"></label></p>
+    </main>
+</body>
+
+</html>

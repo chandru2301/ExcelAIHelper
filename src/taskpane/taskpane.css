@@ -1,0 +1,358 @@
+/* 
+ * Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT license.
+ * See LICENSE in the project root for license information.
+ */
+
+ html,
+ body {
+     width: 100%;
+     height: 100%;
+     margin: 0;
+     padding: 0;
+ }
+ 
+ ul, ol {
+     margin: 0;
+     padding: 0 0 0 20px;
+ }
+ 
+ .ms-welcome__header {
+    padding: 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    align-items: center;
+ }
+
+ .ms-welcome__main {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-flex: 1 0 0;
+    flex: 1 0 0;
+    padding: 10px 20px;
+    position: relative;
+ }
+ 
+ .ms-welcome__main > h2 {
+     width: 100%;
+     text-align: center;
+ }
+ 
+ .ms-List {
+     list-style-type: none;
+     margin-top: 10px;
+     width: 100%;
+ }
+ 
+ .ms-ListItem {
+     padding-bottom: 10px;
+     display: -webkit-flex;
+     display: flex;
+ }
+ 
+ .ms-welcome__action.ms-Button--hero {
+     margin-top: 20px;
+     margin-bottom: 10px;
+     width: 100%;
+     text-align: center;
+ }
+ 
+.ms-Button.ms-Button--hero .ms-Button-label {
+  color: #0078d7;
+  font-weight: bold;
+}
+
+.ms-Button.ms-Button--hero:hover .ms-Button-label,
+.ms-Button.ms-Button--hero:focus .ms-Button-label{
+  color: #005a9e;
+  cursor: pointer;
+}
+
+b {
+    font-weight: bold;
+}
+
+#result-info {
+    margin-top: 10px;
+    color: #333;
+    width: 100%;
+    text-align: center;
+}
+
+/* Toggle button styling */
+.ms-Toggle {
+    margin: 15px 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ms-Toggle-description {
+    margin-right: 10px;
+}
+
+.toggle-container {
+    position: relative;
+    display: inline-block;
+}
+
+.ms-Toggle-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.ms-Toggle-field {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    width: 80px;
+    height: 24px;
+    background-color: #f4f4f4;
+    border-radius: 12px;
+    transition: .4s;
+    padding: 2px;
+}
+
+.ms-Toggle-field:before {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .4s;
+    box-shadow: 0 0 2px rgba(0,0,0,0.3);
+}
+
+.ms-Toggle-input:checked + .ms-Toggle-field {
+    background-color: #0078d7;
+}
+
+.ms-Toggle-input:checked + .ms-Toggle-field:before {
+    transform: translateX(56px);
+}
+
+.ms-Label {
+    position: absolute;
+    font-size: 12px;
+    color: #333;
+}
+
+.ms-Label--off {
+    left: 25px;
+}
+
+.ms-Label--on {
+    right: 25px;
+    color: white;
+    opacity: 0;
+}
+
+.ms-Toggle-input:checked + .ms-Toggle-field .ms-Label--off {
+    opacity: 0;
+}
+
+.ms-Toggle-input:checked + .ms-Toggle-field .ms-Label--on {
+    opacity: 1;
+}
+
+/* Chat container styling */
+#chat-container {
+    width: 100%;
+    margin-top: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+}
+
+#chat-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.chat-message {
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    border-radius: 15px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.user-message {
+    background-color: #0078d7;
+    color: white;
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+.ai-message {
+    background-color: #e5e5e5;
+    color: #333;
+    align-self: flex-start;
+}
+
+#chat-input-container {
+    display: flex;
+    border-top: 1px solid #ccc;
+}
+
+#chat-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+
+#chat-send {
+    padding: 10px 15px;
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#chat-send:hover {
+    background-color: #005a9e;
+}
+
+/* Hovering Chat Button */
+#hovering-chat-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #0078d7;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: transform 0.2s ease;
+    display: none; /* Hidden by default, shown when chat mode is off */
+}
+
+#hovering-chat-button:hover {
+    transform: scale(1.05);
+    background-color: #005a9e;
+}
+
+/* Hovering Chat Container */
+#hovering-chat-container {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 320px;
+    height: 400px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 999;
+    display: none; /* Hidden by default */
+}
+
+.hovering-chat-header {
+    padding: 12px 15px;
+    background-color: #0078d7;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+}
+
+#close-hovering-chat {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+#hovering-chat-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 15px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+}
+
+#hovering-chat-input-container {
+    display: flex;
+    border-top: 1px solid #eaeaea;
+    padding: 10px;
+}
+
+#hovering-chat-input {
+    flex-grow: 1;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+}
+
+#hovering-chat-send {
+    width: 36px;
+    height: 36px;
+    margin-left: 8px;
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#hovering-chat-send:hover {
+    background-color: #005a9e;
+}
+
+/* Make sure the hovering chat messages have the same styling */
+#hovering-chat-messages .chat-message {
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    border-radius: 15px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+/* Animation for the hovering chat */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease forwards;
+}
