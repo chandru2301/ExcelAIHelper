@@ -1,5 +1,4 @@
 # Excel AI Helper
-.
 <div align="center">
   <img src="assets/logo-filled.png" alt="Excel AI Helper Logo" width="200">
   <br>
